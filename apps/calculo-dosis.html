@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cálculo de Dosis — herramienta de apoyo para realizar cálculos de diferentes tipos de dosis y unidades. AppVida y Salud.">
+  <title>Cálculo de Dosis | AppVida y Salud</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;background:#07111f;color:#edf6ff;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1080px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.95);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px)}
+    .nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800}
+    .mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#1e88e5,#00b8d4);font-size:1.2rem}
+    nav{display:flex;gap:20px;color:#b8c9d9;font-size:.92rem}
+    nav a:hover{color:#fff}
+    .hero{padding:85px 0 70px;background:radial-gradient(circle at 15% 20%,rgba(30,136,229,.18),transparent 36%),radial-gradient(circle at 90% 15%,rgba(0,188,212,.12),transparent 32%)}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+    .back{display:inline-block;color:#75c8ff;font-size:.9rem;margin-bottom:24px}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .badge{padding:6px 10px;border-radius:999px;background:rgba(30,136,229,.12);border:1px solid rgba(30,136,229,.3);color:#75c8ff;font-size:.76rem;font-weight:700}
+    h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.03;letter-spacing:-2px;margin-bottom:22px}
+    h1 span{color:#65cfff}
+    .lead{font-size:1.14rem;color:#bdcede;max-width:700px;margin-bottom:28px}
+    .hero-card{padding:30px;border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.09);box-shadow:0 25px 70px rgba(0,0,0,.25)}
+    .app-symbol{width:82px;height:82px;border-radius:21px;display:grid;place-items:center;background:rgba(255,255,255,.07);font-size:2.8rem;margin-bottom:20px}
+    .hero-card h2{font-size:1.4rem;margin-bottom:10px}
+    .hero-card p{color:#aebfd0}
+    .section{padding:75px 0}
+    .section h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:13px}
+    .section-intro{color:#aebfd0;max-width:800px;margin-bottom:32px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{padding:25px;border-radius:18px;background:#0c1a2b;border:1px solid rgba(255,255,255,.08)}
+    .card-icon{font-size:1.8rem;margin-bottom:12px}
+    .card h3{margin-bottom:8px;font-size:1.12rem}
+    .card p{color:#aebfd0;font-size:.94rem}
+    .highlight{padding:32px;border-radius:22px;background:rgba(101,207,255,.05);border:1px solid rgba(101,207,255,.16)}
+    .highlight p{color:#c3d2df;margin-top:8px}
+    .units{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .unit{padding:9px 13px;border-radius:10px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);font-weight:700;font-size:.9rem}
+    .privacy-box{padding:30px;border-radius:20px;background:#0c1a2b;border:1px solid rgba(255,255,255,.08)}
+    .privacy-box ul{margin:15px 0 0 20px;color:#b8c9d9}
+    .privacy-box li{margin:7px 0}
+    .notice{padding:26px;border-radius:18px;background:rgba(255,193,7,.055);border:1px solid rgba(255,193,7,.18);color:#d6dce2}
+    .notice strong{color:#ffe39a}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:11px;background:#168bd0;font-weight:700}
+    .btn:hover{background:#1c9de8}
+    .btn.secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+    footer{padding:32px 0;border-top:1px solid rgba(255,255,255,.08);color:#8295a8;font-size:.87rem}
+    .footer-row{display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .footer-links a:hover{color:#fff}
+    @media(max-width:800px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}nav{display:none}}
+    @media(max-width:560px){.hero{padding:65px 0 55px}.section{padding:55px 0}.grid{grid-template-columns:1fr}.footer-row{flex-direction:column;align-items:flex-start}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="../index.html">
+      <div class="mark">♥</div>
+      <span>AppVida y Salud</span>
+    </a>
+    <nav>
+      <a href="../index.html#aplicaciones">Aplicaciones</a>
+      <a href="#caracteristicas">Características</a>
+      <a href="calculo-dosis-privacidad.html">Privacidad</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <a class="back" href="../index.html">← Volver a AppVida y Salud</a>
+        <div class="badges">
+          <span class="badge">ANDROID</span>
+          <span class="badge">PRIMEROS RESPONDEDORES</span>
+          <span class="badge">EDUCACIÓN</span>
+        </div>
+        <h1>Cálculo de <span>Dosis</span></h1>
+        <p class="lead">
+          Herramienta de apoyo para realizar cálculos de diferentes tipos de
+          dosis y unidades, desarrollada pensando en las necesidades de
+          funcionarios de salud, primeros respondedores y estudiantes.
+        </p>
+        <div class="actions">
+          <a class="btn secondary" href="calculo-dosis-privacidad.html">Política de privacidad →</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="app-symbol">💊</div>
+        <h2>Una herramienta para facilitar el cálculo</h2>
+        <p>
+          Diseñada para entregar una forma rápida y sencilla de efectuar
+          cálculos, sin convertir la aplicación en un sistema de registro
+          clínico.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="caracteristicas">
+    <div class="container">
+      <h2>¿Qué permite hacer?</h2>
+      <p class="section-intro">
+        La aplicación permite realizar cálculos relacionados con distintos
+        tipos de dosis y trabajar con diferentes unidades, según las
+        necesidades del usuario.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon">🧮</div>
+          <h3>Cálculos de dosis</h3>
+          <p>
+            Apoya el cálculo de diferentes modalidades de dosis a partir de
+            los valores ingresados por el usuario.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>Diferentes unidades</h3>
+          <p>
+            Permite trabajar con expresiones y unidades utilizadas en distintos
+            escenarios de cálculo.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Consulta rápida</h3>
+          <p>
+            Busca facilitar cálculos frecuentes mediante una herramienta
+            sencilla y accesible.
+          </p>
+        </article>
+      </div>
+
+      <div class="highlight" style="margin-top:25px;">
+        <strong>Ejemplos de unidades y modalidades</strong>
+        <p>
+          La aplicación contempla, entre otras, expresiones como:
+        </p>
+        <div class="units">
+          <span class="unit">mcg/kg/min</span>
+          <span class="unit">mcg/kg/hora</span>
+          <span class="unit">y otras modalidades de dosis</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>¿Para quién está pensada?</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon">🚑</div>
+          <h3>Primeros respondedores</h3>
+          <p>
+            Como herramienta de apoyo para quienes requieren efectuar
+            determinados cálculos durante su preparación o práctica.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">📚</div>
+          <h3>Educación</h3>
+          <p>
+            Como recurso complementario para estudiantes y personas que se
+            encuentran aprendiendo o reforzando cálculos relacionados con dosis.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🩺</div>
+          <h3>Funcionarios de salud</h3>
+          <p>
+            Como herramienta complementaria para facilitar determinados
+            cálculos, siempre de acuerdo con la formación y responsabilidades
+            del usuario.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="privacy-box">
+        <h2>Privacidad y datos</h2>
+        <p style="color:#aebfd0;">
+          Cálculo de Dosis está diseñada como una herramienta de cálculo y no
+          como un sistema de registro.
+        </p>
+        <ul>
+          <li>No requiere crear una cuenta.</li>
+          <li>No registra pacientes ni historias clínicas.</li>
+          <li>No mantiene un registro de medicamentos administrados.</li>
+          <li>No solicita datos personales para realizar los cálculos.</li>
+          <li>Los valores introducidos tienen como finalidad realizar el cálculo solicitado.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="calculo-dosis-privacidad.html">Leer Política de Privacidad →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="notice">
+        <strong>⚠️ Aviso importante</strong>
+        <p style="margin-top:8px;">
+          Cálculo de Dosis es una herramienta de apoyo y no sustituye la
+          formación profesional, el juicio clínico, los protocolos
+          institucionales, las guías oficiales ni la verificación
+          independiente de los resultados. Antes de utilizar cualquier
+          resultado en un contexto asistencial, el usuario debe comprobar que
+          los datos ingresados, las unidades, las fórmulas aplicables y el
+          resultado sean correctos y apropiados para la situación.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div>© 2026 AppVida y Salud · Cálculo de Dosis</div>
+    <div class="footer-links">
+      <a href="../index.html">Inicio</a>
+      <a href="registro-pcr.html">Registro PCR</a>
+      <a href="calculo-dosis-privacidad.html">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
