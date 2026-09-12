@@ -16,26 +16,19 @@ html{scroll-behavior:smooth}
 body{margin:0;background:radial-gradient(circle at 80% 0,rgba(39,169,255,.14),transparent 30rem),linear-gradient(180deg,var(--bg),#081b24);color:var(--txt);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
 .wrap{width:min(calc(100% - 32px),var(--max));margin:auto}
 a{color:inherit}
-.brand-banner{
-  width:100%;
-  min-height:310px;
-  background:#031a2c url("assets/appvidaysalud-banner-exacto.png") center/cover no-repeat;
-  border-bottom:1px solid rgba(83,220,255,.28);
-  box-shadow:0 18px 45px rgba(0,0,0,.28);
-}
-.banner-inner{min-height:310px;display:flex;align-items:flex-end}
-.banner-spacer{height:1px}
-header{
-  position:sticky;top:0;z-index:20;
-  border-bottom:1px solid var(--line);
-  background:rgba(3,18,30,.96);
-  backdrop-filter:blur(14px);
-}
-.nav{height:72px;display:flex;justify-content:center;align-items:center}
-nav{display:flex;align-items:center;justify-content:center;gap:42px;color:#d9e8ef;font-size:15px;font-weight:700}
-nav a{padding:24px 4px 20px;text-decoration:none;border-bottom:3px solid transparent}
-nav a:hover,nav a.active{color:#38e1db;border-bottom-color:#38e1db}
-.nav-cta{margin-left:18px;background:#14b8c4;border-radius:999px;padding:11px 22px!important;border:0!important;color:white!important}
+header{position:sticky;top:0;z-index:20;background:rgba(3,14,24,.96);border-bottom:1px solid rgba(39,169,255,.22);box-shadow:0 10px 35px rgba(0,0,0,.25);backdrop-filter:blur(16px)}
+.nav{min-height:96px;display:flex;justify-content:space-between;align-items:center;gap:28px}
+.brand{text-decoration:none;display:flex;align-items:center;gap:15px;font-weight:900;font-size:1.15rem}
+.brand-mark{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#159de7,#21d3c3);color:white;font-size:28px;box-shadow:0 8px 25px rgba(39,169,255,.24);position:relative;overflow:hidden}
+.brand-mark:after{content:"";position:absolute;width:90px;height:1px;background:rgba(255,255,255,.35);transform:rotate(-30deg);top:34px;left:-18px}
+.brand-text{display:flex;flex-direction:column;line-height:1.05}
+.brand-name{font-size:1.35rem;letter-spacing:-.03em;background:linear-gradient(90deg,#ffffff,#75dff2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-tag{margin-top:6px;color:#8eaab8;font-size:.69rem;font-weight:650;letter-spacing:.04em}
+nav{display:flex;align-items:center;gap:8px;color:#b9cbd5;font-size:13px}
+nav a{padding:9px 11px;border-radius:10px;text-decoration:none;transition:.2s}
+nav a:hover{color:white;background:rgba(255,255,255,.05)}
+.nav-cta{background:linear-gradient(135deg,#20b7d8,#27a9ff);color:#03111b!important;font-weight:850;padding:10px 15px!important;box-shadow:0 7px 20px rgba(39,169,255,.2)}
+.nav-cta:hover{background:linear-gradient(135deg,#27c9d9,#42b8ff)!important}
 .hero{text-align:center;padding:82px 0 65px}
 .eyebrow{display:inline-block;color:#8dd4ff;background:rgba(39,169,255,.07);border:1px solid rgba(39,169,255,.22);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:750;margin-bottom:20px}
 .hero h1{max-width:850px;margin:auto;font-size:clamp(40px,7vw,72px);line-height:.98;letter-spacing:-.055em}
@@ -83,43 +76,32 @@ footer{margin-top:55px;padding:32px 0 42px;border-top:1px solid var(--line);colo
 .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
 .footer-links{display:flex;flex-wrap:wrap;gap:16px}
 .footer-links a:hover{color:white}
-@media(max-width:800px){
-  .brand-banner{min-height:250px;background-position:center top}
-  .banner-inner{min-height:250px}
-  nav{gap:18px;font-size:13px}.nav-cta{display:none}
-  .categories{grid-template-columns:1fr}.features{grid-template-columns:1fr}
-}
-@media(max-width:560px){
-  .brand-banner{min-height:205px;background-size:auto 205px;background-position:center top}
-  .banner-inner{min-height:205px}
-  nav{gap:10px;font-size:11px}
-  nav a{padding:25px 2px 19px}
-  .wrap{width:calc(100% - 26px)}.hero{padding:62px 0 45px}
-  .category{padding:21px}.app-card{align-items:flex-start}.app-card>.mini{display:none}
-  .about{padding:25px}.footer-row{flex-direction:column;align-items:flex-start}
-}
+@media(max-width:800px){.nav{min-height:78px}.brand-tag{display:none}.brand-name{font-size:1.08rem}nav{display:none}.categories{grid-template-columns:1fr}.features{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{width:calc(100% - 26px)}.hero{padding:62px 0 45px}.category{padding:21px}.app-card{align-items:flex-start}.app-card>.mini{display:none}.about{padding:25px}.footer-row{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
 
-<!-- Banner institucional: versión fiel al diseño de referencia -->
-<section class="brand-banner" aria-label="AppVida y Salud">
-  <div class="banner-inner"><div class="wrap banner-spacer"></div></div>
-</section>
-
 <header>
 <div class="wrap nav">
+<a class="brand" href="index.html" aria-label="AppVida y Salud - Inicio">
+<div class="brand-mark">✚</div>
+<div class="brand-text">
+<span class="brand-name">AppVida y Salud</span>
+<span class="brand-tag">Tecnología creada desde la experiencia</span>
+</div>
+</a>
 <nav>
-<a class="active" href="#inicio">⌂ Inicio</a>
-<a href="#aplicaciones">▦ Aplicaciones</a>
-<a href="#privacidad">◈ Privacidad</a>
-<a href="#proyecto">● Acerca de</a>
-<a class="nav-cta" href="#aplicaciones">↓ Explorar apps</a>
+<a href="index.html">Inicio</a>
+<a href="#aplicaciones">Aplicaciones</a>
+<a href="#proyecto">El proyecto</a>
+<a href="#contacto">Contacto</a>
+<a class="nav-cta" href="#aplicaciones">Explorar apps →</a>
 </nav>
 </div>
 </header>
 
-<main id="inicio">
+<main>
 
 <section class="hero">
 <div class="wrap">
@@ -145,31 +127,54 @@ footer{margin-top:55px;padding:32px 0 42px;border-top:1px solid var(--line);colo
 <article class="category">
 <div class="cat-head">
 <div class="cat-icon">🚑</div>
-<div><h3>Primeros respondedores</h3><p class="desc">Herramientas digitales para apoyar la respuesta inicial ante emergencias.</p></div>
+<div>
+<h3>Primeros respondedores</h3>
+<p class="desc">Herramientas digitales para apoyar la respuesta inicial ante emergencias.</p>
 </div>
+</div>
+
 <div class="apps">
+
 <div class="app-card">
 <img class="app-icon" src="assets/registro-pcr-icon.png" alt="Registro PCR">
-<div class="app-info"><h4>Registro PCR</h4><p>Registro y documentación cronológica de eventos de paro cardiorrespiratorio.</p><span class="badge">ANDROID · DISPONIBLE</span></div>
+<div class="app-info">
+<h4>Registro PCR</h4>
+<p>Registro y documentación cronológica de eventos de paro cardiorrespiratorio.</p>
+<span class="badge">ANDROID · DISPONIBLE</span>
+</div>
 <a class="mini" href="apps/registro-pcr.html">Ver ficha</a>
 </div>
+
 <div class="app-card">
 <div class="app-icon emoji-icon">💊</div>
-<div class="app-info"><h4>Cálculo de Dosis</h4><p>Herramienta para calcular diferentes tipos de dosis y unidades.</p><span class="badge">ANDROID · DISPONIBLE</span></div>
+<div class="app-info">
+<h4>Cálculo de Dosis</h4>
+<p>Herramienta para calcular diferentes tipos de dosis y unidades.</p>
+<span class="badge">ANDROID · DISPONIBLE</span>
+</div>
 <a class="mini" href="apps/calculo-dosis.html">Ver ficha</a>
 </div>
+
 </div>
 </article>
 
 <article class="category green">
 <div class="cat-head">
 <div class="cat-icon">🩺</div>
-<div><h3>Ayuda al personal de salud</h3><p class="desc">Aplicaciones para apoyar la organización y las tareas del personal sanitario.</p></div>
+<div>
+<h3>Ayuda al personal de salud</h3>
+<p class="desc">Aplicaciones para apoyar la organización y las tareas del personal sanitario.</p>
 </div>
+</div>
+
 <div class="apps">
 <div class="app-card">
 <div class="app-icon emoji-icon">📅</div>
-<div class="app-info"><h4>Calendario de Turnos con Alarma</h4><p>Organiza turnos, patrones de jornada y alarmas.</p><span class="badge">ANDROID · DISPONIBLE</span></div>
+<div class="app-info">
+<h4>Calendario de Turnos con Alarma</h4>
+<p>Organiza turnos, patrones de jornada y alarmas.</p>
+<span class="badge">ANDROID · DISPONIBLE</span>
+</div>
 <a class="mini" href="apps/calendario-turnos.html">Ver ficha</a>
 </div>
 </div>
@@ -178,24 +183,43 @@ footer{margin-top:55px;padding:32px 0 42px;border-top:1px solid var(--line);colo
 <article class="category purple">
 <div class="cat-head">
 <div class="cat-icon">📚</div>
-<div><h3>Educación</h3><p class="desc">Recursos digitales para aprender, estudiar y fortalecer conocimientos.</p></div>
+<div>
+<h3>Educación</h3>
+<p class="desc">Recursos digitales para aprender, estudiar y fortalecer conocimientos.</p>
 </div>
+</div>
+
 <div class="apps">
 <div class="app-card">
 <div class="app-icon emoji-icon">💊</div>
-<div class="app-info"><h4>Cálculo de Dosis</h4><p>Herramienta de apoyo para practicar y realizar cálculos de diferentes tipos de dosis.</p><span class="badge">ANDROID · DISPONIBLE</span></div>
+<div class="app-info">
+<h4>Cálculo de Dosis</h4>
+<p>Herramienta de apoyo para practicar y realizar cálculos de diferentes tipos de dosis.</p>
+<span class="badge">ANDROID · DISPONIBLE</span>
+</div>
 <a class="mini" href="apps/calculo-dosis.html">Ver ficha</a>
 </div>
-<div class="coming"><strong>Próximamente</strong>Nuevas aplicaciones y recursos educativos están en desarrollo.</div>
+
+<div class="coming">
+<strong>Próximamente</strong>
+Nuevas aplicaciones y recursos educativos están en desarrollo.
+</div>
 </div>
 </article>
 
 <article class="category pink">
 <div class="cat-head">
 <div class="cat-icon">🌿</div>
-<div><h3>Estilos de vida</h3><p class="desc">Herramientas enfocadas en bienestar, hábitos y autocuidado.</p></div>
+<div>
+<h3>Estilos de vida</h3>
+<p class="desc">Herramientas enfocadas en bienestar, hábitos y autocuidado.</p>
 </div>
-<div class="coming"><strong>Próximamente</strong>Estamos preparando nuevas herramientas de bienestar.</div>
+</div>
+
+<div class="coming">
+<strong>Próximamente</strong>
+Estamos preparando nuevas herramientas de bienestar.
+</div>
 </article>
 
 </div>
@@ -208,10 +232,23 @@ footer{margin-top:55px;padding:32px 0 42px;border-top:1px solid var(--line);colo
 <h2>Un proyecto que crece</h2>
 <p>Una plataforma preparada para incorporar nuevas aplicaciones manteniendo una experiencia simple y ordenada.</p>
 </div>
+
 <div class="features">
-<div class="feature"><div class="feature-icon">🧩</div><h3>Por categorías</h3><p>Encuentra cada aplicación según su propósito.</p></div>
-<div class="feature"><div class="feature-icon">📱</div><h3>Experiencia sencilla</h3><p>Interfaces claras, directas y fáciles de utilizar.</p></div>
-<div class="feature"><div class="feature-icon">🔒</div><h3>Privacidad</h3><p>Información transparente sobre el tratamiento de datos.</p></div>
+<div class="feature">
+<div class="feature-icon">🧩</div>
+<h3>Por categorías</h3>
+<p>Encuentra cada aplicación según su propósito.</p>
+</div>
+<div class="feature">
+<div class="feature-icon">📱</div>
+<h3>Experiencia sencilla</h3>
+<p>Interfaces claras, directas y fáciles de utilizar.</p>
+</div>
+<div class="feature">
+<div class="feature-icon">🔒</div>
+<h3>Privacidad</h3>
+<p>Información transparente sobre el tratamiento de datos.</p>
+</div>
 </div>
 </div>
 </section>
@@ -223,36 +260,37 @@ footer{margin-top:55px;padding:32px 0 42px;border-top:1px solid var(--line);colo
 <p>AppVida y Salud nace desde la experiencia y el conocimiento de las necesidades que enfrentamos quienes trabajamos en el área de la salud.</p>
 <p>Soy creador de contenido y desarrollador de aplicaciones enfocadas en funcionarios y profesionales de la salud, creando herramientas <strong>por y para quienes trabajan en este ámbito</strong>.</p>
 <p>Cada aplicación surge de identificar necesidades reales, problemas cotidianos y tareas que pueden simplificarse mediante la tecnología. El objetivo es facilitar nuestra labor, optimizar nuestro trabajo y acompañarnos en los desafíos que enfrentamos día a día.</p>
-<div class="highlight"><strong>“Tecnología creada desde la experiencia, pensada para quienes hacen posible la salud.”</strong></div>
-<div class="notice"><strong>Aviso importante:</strong> Las aplicaciones tienen fines de apoyo, organización, registro y/o educación. No sustituyen el juicio clínico, los protocolos institucionales, las guías oficiales ni la evaluación de un profesional competente.</div>
+
+<div class="highlight">
+<strong>“Tecnología creada desde la experiencia, pensada para quienes hacen posible la salud.”</strong>
+</div>
+
+<div class="notice">
+<strong>Aviso importante:</strong> Las aplicaciones tienen fines de apoyo, organización, registro y/o educación. No sustituyen el juicio clínico, los protocolos institucionales, las guías oficiales ni la evaluación de un profesional competente.
+</div>
 </div>
 </div>
 </section>
 
-<section id="privacidad">
+<section id="calendario-turnos">
 <div class="wrap">
-<div class="heading">
-<h2>Privacidad</h2>
-<p>Consulta las políticas de privacidad de cada aplicación para conocer cómo se maneja la información.</p>
-</div>
-<div class="features">
-<div class="feature"><div class="feature-icon">🔒</div><h3>Registro PCR</h3><p><a href="apps/registro-pcr.html">Ver información de la aplicación →</a></p></div>
-<div class="feature"><div class="feature-icon">🔒</div><h3>Cálculo de Dosis</h3><p><a href="apps/calculo-dosis-privacidad.html">Ver política de privacidad →</a></p></div>
-<div class="feature"><div class="feature-icon">🔒</div><h3>Calendario de Turnos</h3><p><a href="apps/calendario-turnos-privacidad.html">Ver política de privacidad →</a></p></div>
+<div class="about">
+<h2>📅 Calendario de Turnos con Alarma</h2>
+<p>Aplicación para organizar jornadas y turnos de trabajo, con configuración de patrones y alarmas para facilitar el seguimiento de las jornadas.</p>
+<span class="badge">ANDROID · DISPONIBLE</span>
 </div>
 </div>
 </section>
 
 </main>
 
-<footer>
+<footer id="contacto">
 <div class="wrap footer-row">
 <div>© 2026 AppVida y Salud · Tecnología para la salud</div>
 <div class="footer-links">
 <a href="apps/registro-pcr.html">Registro PCR</a>
 <a href="apps/calculo-dosis.html">Cálculo de Dosis</a>
-<a href="apps/calendario-turnos.html">Calendario de Turnos</a>
-<a href="apps/calendario-turnos-privacidad.html">Privacidad</a>
+<a href="apps/calculo-dosis-privacidad.html">Privacidad de Cálculo de Dosis</a>
 </div>
 </div>
 </footer>
