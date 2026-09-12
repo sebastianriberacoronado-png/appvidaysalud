@@ -3,89 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Calendario de Turnos con Alarma — herramienta para organizar turnos, patrones y alarmas. AppVida y Salud.">
 <title>Calendario de Turnos con Alarma | AppVida y Salud</title>
-<meta name="description" content="Calendario de Turnos con Alarma: organiza turnos, patrones y alarmas de forma sencilla desde tu teléfono.">
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#07111f;color:#eef6ff;line-height:1.6}
-.container{max-width:1000px;margin:auto;padding:28px 20px}
-.hero{background:linear-gradient(135deg,#0d2238,#0b1728);border:1px solid #1b3b57;border-radius:24px;padding:42px 30px;margin-top:25px}
-.badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
-.badge{background:#12344b;border:1px solid #245a7c;padding:6px 11px;border-radius:999px;font-size:13px}
-h1{font-size:42px;line-height:1.15;margin:10px 0}
-h2{margin-top:35px;color:#8bd7ff}
-.subtitle{font-size:19px;color:#b9ccdc;max-width:760px}
-.btn{display:inline-block;margin-top:20px;background:#22a6f2;color:white;text-decoration:none;font-weight:bold;padding:13px 22px;border-radius:12px}
-.btn:hover{opacity:.9}
-.card{background:#0d1d2d;border:1px solid #1b344a;border-radius:18px;padding:22px;margin-top:18px}
-ul{padding-left:22px}
-.footer{border-top:1px solid #1b344a;margin-top:45px;padding:25px 0;color:#9eb1c2;font-size:14px}
-a{color:#72d0ff}
-.note{color:#b9ccdc}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#07111f;color:#edf6ff;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.container{width:min(1080px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.95);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px)}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800}
+.mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#1e88e5,#00b8d4);font-size:1.2rem}
+nav{display:flex;gap:20px;color:#b8c9d9;font-size:.92rem}
+nav a:hover{color:#fff}
+.hero{padding:85px 0 70px;background:radial-gradient(circle at 15% 20%,rgba(30,136,229,.18),transparent 36%),radial-gradient(circle at 90% 15%,rgba(0,188,212,.12),transparent 32%)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+.back{display:inline-block;color:#75c8ff;font-size:.9rem;margin-bottom:24px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.badge{padding:6px 10px;border-radius:999px;background:rgba(30,136,229,.12);border:1px solid rgba(30,136,229,.3);color:#75c8ff;font-size:.76rem;font-weight:700}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.03;letter-spacing:-2px;margin-bottom:22px}
+h1 span{color:#65cfff}
+.lead{font-size:1.14rem;color:#bdcede;max-width:700px;margin-bottom:28px}
+.hero-card{padding:30px;border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.09);box-shadow:0 25px 70px rgba(0,0,0,.25)}
+.app-symbol{width:82px;height:82px;border-radius:21px;display:grid;place-items:center;background:rgba(255,255,255,.07);font-size:2.8rem;margin-bottom:20px}
+.hero-card h2{font-size:1.4rem;margin-bottom:10px}
+.hero-card p{color:#aebfd0}
+.section{padding:75px 0}
+.section h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:13px}
+.section-intro{color:#aebfd0;max-width:800px;margin-bottom:32px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{padding:25px;border-radius:18px;background:#0c1a2b;border:1px solid rgba(255,255,255,.08)}
+.card-icon{font-size:1.8rem;margin-bottom:12px}
+.card h3{margin-bottom:8px;font-size:1.12rem}
+.card p{color:#aebfd0;font-size:.94rem}
+.highlight{padding:32px;border-radius:22px;background:rgba(101,207,255,.05);border:1px solid rgba(101,207,255,.16)}
+.highlight p{color:#c3d2df;margin-top:8px}
+.turnos{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.turno{padding:10px 15px;border-radius:10px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);font-weight:700;font-size:.9rem}
+.privacy-box{padding:30px;border-radius:20px;background:#0c1a2b;border:1px solid rgba(255,255,255,.08)}
+.privacy-box ul{margin:15px 0 0 20px;color:#b8c9d9}
+.privacy-box li{margin:7px 0}
+.notice{padding:26px;border-radius:18px;background:rgba(255,193,7,.055);border:1px solid rgba(255,193,7,.18);color:#d6dce2}
+.notice strong{color:#ffe39a}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:11px;background:#168bd0;font-weight:700}
+.btn:hover{background:#1c9de8}
+.btn.secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+footer{padding:32px 0;border-top:1px solid rgba(255,255,255,.08);color:#8295a8;font-size:.87rem}
+.footer-row{display:flex;justify-content:space-between;gap:18px;align-items:center}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a:hover{color:#fff}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}nav{display:none}}
+@media(max-width:560px){.hero{padding:65px 0 55px}.section{padding:55px 0}.grid{grid-template-columns:1fr}.footer-row{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
-<div class="container">
+
+<header>
+<div class="container nav">
+<a class="brand" href="../index.html">
+<div class="mark">♥</div>
+<span>AppVida y Salud</span>
+</a>
+<nav>
+<a href="../index.html#aplicaciones">Aplicaciones</a>
+<a href="#caracteristicas">Características</a>
+<a href="calendario-turnos-privacidad.html">Privacidad</a>
+</nav>
+</div>
+</header>
+
+<main>
 <section class="hero">
+<div class="container hero-grid">
+<div>
+<a class="back" href="../index.html">← Volver a AppVida y Salud</a>
 <div class="badges">
-<span class="badge">📱 Android</span>
-<span class="badge">🩺 Ayuda al personal de salud</span>
+<span class="badge">ANDROID</span>
+<span class="badge">AYUDA AL PERSONAL DE SALUD</span>
 </div>
-<h1>Calendario de Turnos con Alarma</h1>
-<p class="subtitle">Organiza tus turnos, visualiza tu calendario y configura alarmas para ayudarte a recordar tus jornadas de trabajo.</p>
+<h1>Calendario de <span>Turnos</span> con Alarma</h1>
+<p class="lead">Herramienta para organizar jornadas de trabajo mediante un calendario de turnos, patrones, modificaciones individuales y alarmas.</p>
+<div class="actions">
 <a class="btn" href="https://drive.google.com/file/d/15xT15PIIZUStim3ska-_mdl4Q0yWnXJ2/view?usp=sharing" target="_blank" rel="noopener">Descargar APK →</a>
-</section>
-
-<section class="card">
-<h2>📅 ¿Qué es?</h2>
-<p>Calendario de Turnos con Alarma es una herramienta diseñada para facilitar la organización de jornadas laborales mediante un calendario sencillo, patrones de turnos y alarmas asociadas.</p>
-<p>Está pensada especialmente para personas que trabajan con sistemas de turnos y necesitan consultar rápidamente qué jornada corresponde a cada día.</p>
-</section>
-
-<section class="card">
-<h2>⚙️ Funciones principales</h2>
-<ul>
-<li>Calendario de turnos organizado por día.</li>
-<li>Tipos de turno <strong>DÍA, TARDE, NOCHE y LIBRE</strong>.</li>
-<li>Configuración de patrones de turnos.</li>
-<li>Proyección del patrón en el calendario.</li>
-<li>Edición individual de días para realizar modificaciones.</li>
-<li>Notas asociadas a fechas del calendario.</li>
-<li>Configuración de horarios para los turnos.</li>
-<li>Alarmas asociadas a los turnos.</li>
-<li>Opción para detener la alarma.</li>
-<li>Guardado local de la configuración y los datos del calendario.</li>
-</ul>
-</section>
-
-<section class="card">
-<h2>👥 ¿Para quién está pensada?</h2>
-<p>Para funcionarios y trabajadores que realizan jornadas mediante turnos, especialmente en contextos donde es necesario organizar y consultar rápidamente diferentes tipos de jornada.</p>
-</section>
-
-<section class="card">
-<h2>🔐 Privacidad</h2>
-<p>La aplicación está diseñada para funcionar sin cuentas ni inicio de sesión. La información utilizada para organizar los turnos se almacena localmente en el dispositivo.</p>
-<p>No es una plataforma de gestión de personal ni un sistema para enviar información laboral a terceros.</p>
-<p><a href="calendario-turnos-privacidad.html">Consultar política de privacidad →</a></p>
-</section>
-
-<section class="card">
-<h2>⚠️ Aviso de uso</h2>
-<p class="note">Esta aplicación es una herramienta de organización personal. No reemplaza sistemas institucionales de programación de turnos, comunicaciones oficiales del empleador ni otras plataformas utilizadas por cada institución.</p>
-</section>
-
-<section class="card">
-<h2>⬇️ Descargar</h2>
-<p>Descarga la versión Android directamente desde el enlace oficial.</p>
-<a class="btn" href="https://drive.google.com/file/d/15xT15PIIZUStim3ska-_mdl4Q0yWnXJ2/view?usp=sharing" target="_blank" rel="noopener">Descargar Calendario de Turnos con Alarma</a>
-</section>
-
-<footer class="footer">
-<strong>AppVida y Salud</strong><br>
-Tecnología creada desde la experiencia, pensada para quienes hacen posible la salud.<br><br>
-<a href="../index.html">← Volver a AppVida y Salud</a>
-</footer>
+<a class="btn secondary" href="calendario-turnos-privacidad.html">Política de privacidad →</a>
 </div>
+</div>
+
+<div class="hero-card">
+<div class="app-symbol">📅</div>
+<h2>Organiza tus jornadas</h2>
+<p>Una herramienta sencilla para visualizar tus turnos, proyectar patrones y recibir recordatorios mediante alarmas.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="caracteristicas">
+<div class="container">
+<h2>¿Qué permite hacer?</h2>
+<p class="section-intro">La aplicación reúne las funciones necesarias para organizar un calendario personal de turnos y mantener una referencia clara de las próximas jornadas.</p>
+
+<div class="grid">
+<article class="card"><div class="card-icon">📅</div><h3>Calendario</h3><p>Visualiza tus jornadas organizadas directamente en el calendario.</p></article>
+<article class="card"><div class="card-icon">🔄</div><h3>Patrones de turnos</h3><p>Configura un patrón de jornadas y proyecta sus turnos en el calendario.</p></article>
+<article class="card"><div class="card-icon">✏️</div><h3>Edición individual</h3><p>Modifica días específicos cuando necesites realizar cambios en el patrón.</p></article>
+<article class="card"><div class="card-icon">📝</div><h3>Notas</h3><p>Agrega notas asociadas a fechas del calendario.</p></article>
+<article class="card"><div class="card-icon">⏰</div><h3>Alarmas</h3><p>Configura horarios de alarma para los turnos correspondientes.</p></article>
+<article class="card"><div class="card-icon">🔔</div><h3>Recordatorios</h3><p>Utiliza las alarmas como apoyo para recordar el inicio de tus jornadas.</p></article>
+</div>
+
+<div class="highlight" style="margin-top:25px;">
+<strong>Tipos de jornada</strong>
+<p>El calendario permite organizar diferentes tipos de turno:</p>
+<div class="turnos">
+<span class="turno">☀️ DÍA</span>
+<span class="turno">🌆 TARDE</span>
+<span class="turno">🌙 NOCHE</span>
+<span class="turno">💤 LIBRE</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2>Organización y alarmas</h2>
+<div class="grid">
+<article class="card"><div class="card-icon">🗓️</div><h3>Proyección del patrón</h3><p>Una vez configurado el patrón, las jornadas pueden proyectarse en el calendario para facilitar la planificación.</p></article>
+<article class="card"><div class="card-icon">💾</div><h3>Guardado local</h3><p>La configuración y la información del calendario se conservan localmente en el dispositivo.</p></article>
+<article class="card"><div class="card-icon">🛑</div><h3>Control de alarma</h3><p>La aplicación incorpora una opción para detener la alarma cuando corresponde.</p></article>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="privacy-box">
+<h2>Privacidad y datos</h2>
+<p style="color:#aebfd0;">Calendario de Turnos con Alarma está diseñada para funcionar como una herramienta de organización personal.</p>
+<ul>
+<li>No requiere crear una cuenta ni iniciar sesión.</li>
+<li>Los datos del calendario se almacenan localmente en el dispositivo.</li>
+<li>Permite guardar configuraciones de turnos, patrones, horarios y notas.</li>
+<li>No funciona como una plataforma de gestión remota de personal.</li>
+</ul>
+<div class="actions">
+<a class="btn" href="calendario-turnos-privacidad.html">Leer Política de Privacidad →</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="notice">
+<strong>⚠️ Aviso importante</strong>
+<p style="margin-top:8px;">Calendario de Turnos con Alarma es una herramienta de organización personal. No sustituye los sistemas institucionales de programación de turnos, las comunicaciones oficiales del empleador ni otras plataformas utilizadas por cada institución.</p>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footer-row">
+<div>© 2026 AppVida y Salud · Calendario de Turnos con Alarma</div>
+<div class="footer-links">
+<a href="../index.html">Inicio</a>
+<a href="registro-pcr.html">Registro PCR</a>
+<a href="calculo-dosis.html">Cálculo de Dosis</a>
+<a href="calendario-turnos-privacidad.html">Privacidad</a>
+</div>
+</div>
+</footer>
 </body>
 </html>
